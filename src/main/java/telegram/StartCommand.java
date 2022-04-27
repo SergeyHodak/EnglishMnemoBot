@@ -1,6 +1,5 @@
 package telegram;
 
-import lombok.SneakyThrows;
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Chat;
@@ -16,18 +15,18 @@ public class StartCommand extends BotCommand {
         super("start", "Команда Старт");
     }
 
-    @SneakyThrows
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
-        String text = "English";
+        String text = "Ну здравствуй";
 
         SendMessage message = new SendMessage();
-        message.setText(convert(text)); // що відправляємо
+        message.setText(convert(text)); // что отправляем
         message.setChatId(Long.toString(chat.getId())); // кому
 
         try {
-            absSender.execute(message);
+            absSender.execute(message); // отправили
         } catch (TelegramApiException e) {
+            System.out.println("не получилось отправить из-за:");
             e.printStackTrace();
         }
     }
